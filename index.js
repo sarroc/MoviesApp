@@ -66,11 +66,28 @@ const onMovieSelect = async (movie, summaryElement, side) => {
   }
 };
 
-const runComparison = () => {
-  console.log("time for Comparison");
-};
-
 const movieTemplate = (movieDetail) => {
+  const dollars = parseInt(
+    movieDetail.BoxOffice.replace(/\$/g, "").replace(/,/g, "")
+  );
+  const metascore = parseInt(movieDetail.Metascore);
+  const imdbRating = parseFloat(movieDetail.imdbRating);
+  const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ""));
+
+  let count = 0;
+  const awards = movieDetail.Awards.split(" ").forEach((word) => {
+    const value = parseInt(word);
+
+    if (isNaN(value)) {
+      return;
+    } else {
+      count = count + value;
+    }
+  });
+  console.log(count);
+
+  const runComparison = () => {};
+
   return `
   <article class='media'>
   <figure class= 'media-left'>
@@ -86,7 +103,7 @@ const movieTemplate = (movieDetail) => {
   </div>
   </div>
   </article>
-  <article class='notification is-primary'>
+  <article data-value= class='notification is-primary'>
   <p class='title'>${movieDetail.Awards}</p>
   <p class='subtitle'>Awards</p>
   </article>
