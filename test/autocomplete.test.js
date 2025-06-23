@@ -23,6 +23,11 @@ it('Dropdown starts closed', () => {
 });
 
 it('After seraching, dropdown opens up', () => {
-    // type something in
-    // check dropdown
-})
+    const input = document.querySelector('input');
+    input.value = 'avengers';
+    input.dispatchEvent(new Event('input'));
+
+    const dropdown = document.querySelector('.dropdown');
+
+    expect(dropdown.className).to.include('is-active');
+});
