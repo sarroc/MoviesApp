@@ -1,4 +1,5 @@
-it('Shows an autocomplete!', () => {
+beforeEach(() => {
+    document.querySelector('#target').innerHTML = '';
     createAutoComplete({
         root: document.querySelector('#target'),
         fetchData() {
@@ -12,8 +13,16 @@ it('Shows an autocomplete!', () => {
           return movie.Title;  
         }
     });
+});
+
+it('Dropdown starts closed', () => {
 
     const dropdown = document.querySelector('.dropdown');
 
     expect(dropdown.className).not.to.include('is-active');
 });
+
+it('After seraching, dropdown opens up', () => {
+    // type something in
+    // check dropdown
+})
